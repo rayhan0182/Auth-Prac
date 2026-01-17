@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/im"
+    tools:context=".starter.StartFragment">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/log_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="L O G I N"
+        app:cornerRadius="@dimen/_7sdp"
+        android:textColor="@color/white"
+        android:elevation="@dimen/_15ssp"
+        android:layout_marginHorizontal="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:backgroundTint="#123654"
+        />
+
+    <Button
+        android:id="@+id/sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="R E G E S T E R"
+        app:cornerRadius="@dimen/_7sdp"
+        android:textColor="@color/black"
+        android:layout_marginHorizontal="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:strokeWidth="1.50dp"
+        app:strokeColor="#ECC7C6"
+        />
+
+
+</LinearLayout>
