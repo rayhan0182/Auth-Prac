@@ -9,9 +9,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.authpractice.R
 import com.example.authpractice.bfragment.BaseFragment
 import com.example.authpractice.databinding.FragmentStartBinding
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
+
 class StartFragment : BaseFragment<FragmentStartBinding>(
 
     FragmentStartBinding::inflate
@@ -19,6 +22,9 @@ class StartFragment : BaseFragment<FragmentStartBinding>(
 ) {
 
     override fun usercreate() {
+
+        autologin()
+
 
         with(binding){
 
@@ -37,6 +43,16 @@ class StartFragment : BaseFragment<FragmentStartBinding>(
         }
 
 
+
+    }
+
+    private fun autologin() {
+
+        FirebaseAuth.getInstance().currentUser?.let {
+
+          findNavController().navigate(R.id.action_startFragment_to_dashFragment)
+
+        }
 
     }
 

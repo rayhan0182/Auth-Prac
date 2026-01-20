@@ -1,5 +1,4 @@
 package com.example.authpractice.view.login
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +6,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.authpractice.R
 import com.example.authpractice.bfragment.BaseFragment
 import com.example.authpractice.core.DataState
 import com.example.authpractice.databinding.FragmentLoginBinding
 import com.example.authpractice.isemptyy
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(
@@ -29,11 +32,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(
         viewmodel.loginmutablelivedata.observe(viewLifecycleOwner){
 
             when(it){
-                is DataState.Failure -> {
+                is DataState.Massage -> {
 
                     loadingbar.dismiss()
 
-                    Toast.makeText(context,"Failure:$it", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,"Failure:${it.massage.toString()}", Toast.LENGTH_LONG).show()
 
                 }
                 is DataState.Loading-> {
@@ -44,7 +47,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(
 
                     loadingbar.dismiss()
 
-                    Toast.makeText(context,"Success done:${it.utype}", Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_loginFragment_to_dashFragment)
+
+                   
 
                 }
             }
@@ -85,10 +90,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(
          }
 
 
-
-
-
     }
+
+
 
 
 }

@@ -8,9 +8,10 @@ data class Rmodel(
 
     val password: String,
 
-    val id: String,
+    var userid: String,
 
-    val type: String)
+    val type: String
+)
 
 
 

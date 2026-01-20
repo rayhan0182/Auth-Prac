@@ -1,34 +1,50 @@
 package com.example.authpractice.view.register
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.authpractice.core.DataState
 import com.example.authpractice.service.AuthRepo
-import dagger.hilt.android.AndroidEntryPoint
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+@HiltViewModel
+class ModelView @Inject constructor(private val repo: AuthRepo,
 
 
-class ModelView: ViewModel() {
+    ): ViewModel() {
 
     private val _registerrespons = MutableLiveData<DataState<Rmodel>>()
 
     val registerrespons: LiveData<DataState<Rmodel>> = _registerrespons
 
-    val repository = AuthRepo()
 
-    fun mregister(rmodel: Rmodel){
+    fun mregister(rmodel: Rmodel) {
 
         _registerrespons.postValue(DataState.Loading())
 
-        repository.register(rmodel).addOnSuccessListener {
+        repo.register(rmodel).addOnSuccessListener {
 
-         _registerrespons.postValue(DataState.Success(rmodel))
+          it.user?.let { usercreated->
+
+              rmodel.userid = usercreated.uid
+
+              repo.usercreate(rmodel).addOnSuccessListener {
+
+                  _registerrespons.postValue(DataState.Success(rmodel))
+
+              }.addOnFailureListener {exception ->
+
+                  _registerrespons.postValue(DataState.Massage(exception.message.toString()))
+
+              }
+
+          }
 
 
-        }.addOnFailureListener {exception ->
+        }.addOnFailureListener { exception ->
 
-            _registerrespons.postValue(DataState.Failure(exception.message.toString()))
+            _registerrespons.postValue(DataState.Massage(exception.message.toString()))
 
         }
 

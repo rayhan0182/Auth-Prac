@@ -16,15 +16,40 @@
         <action
             android:id="@+id/action_startFragment_to_regFragment"
             app:destination="@id/regFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_dashFragment"
+            app:destination="@id/dashFragment" />
     </fragment>
     <fragment
         android:id="@+id/regFragment"
         android:name="com.example.authpractice.view.register.RegFragment"
         android:label="fragment_reg"
-        tools:layout="@layout/fragment_reg" />
+        tools:layout="@layout/fragment_reg" >
+        <action
+            android:id="@+id/action_regFragment_to_dashFragment"
+            app:destination="@id/dashFragment" />
+        <action
+            android:id="@+id/action_regFragment_to_dashFragment2"
+            app:destination="@id/dashFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.authpractice.view.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+
+        <action
+            android:id="@+id/action_loginFragment_to_dashFragment"
+            app:destination="@id/dashFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashFragment"
+        android:name="com.example.authpractice.view.DashFragment"
+        android:label="fragment_dash"
+        tools:layout="@layout/fragment_dash" >
+        <action
+            android:id="@+id/action_dashFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+
 </navigation>

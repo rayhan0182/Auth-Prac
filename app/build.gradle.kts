@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.hilt.android)
     kotlin("kapt")
+
+
 }
 
 android {
@@ -44,6 +46,9 @@ android {
         enable = true
 
     }
+    buildFeatures {
+        viewBinding = true
+    }
 
 }
 
@@ -60,6 +65,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.fragment)
+    implementation(libs.firebase.firestore)
+    implementation(libs.androidx.legacy.support.v4)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -68,9 +75,19 @@ dependencies {
 
     implementation("com.intuit.sdp:sdp-android:1.1.1")
 
-    implementation("com.google.dagger:hilt-android:2.57.1")
+    implementation("com.google.dagger:hilt-android:2.57.2")
 
-    kapt("com.google.dagger:hilt-android-compiler:2.57.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.57.2")
+
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+
+    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
+
+
+
+
 
 
 }

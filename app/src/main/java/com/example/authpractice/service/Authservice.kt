@@ -11,4 +11,6 @@ interface Authservice {
 
     fun login(lmodel: Lmodel): Task<AuthResult>
 
+    fun usercreate(rmodel: Rmodel): Task<Void>
+
 }

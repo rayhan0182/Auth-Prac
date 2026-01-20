@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.authpractice.R
 import com.example.authpractice.bfragment.BaseFragment
 import com.example.authpractice.core.DataState
@@ -28,7 +29,7 @@ class RegFragment : BaseFragment<FragmentRegBinding>(
         viewmod.registerrespons.observe(viewLifecycleOwner) {
 
            when(it){
-               is DataState.Failure ->{
+               is DataState.Massage ->{
 
                    loadingbar.dismiss()
 
@@ -44,7 +45,11 @@ class RegFragment : BaseFragment<FragmentRegBinding>(
 
                    loadingbar.dismiss()
 
+                   findNavController().navigate(R.id.action_regFragment_to_dashFragment)
+
                    Toast.makeText(context,"Successfully created:${it.utype}", Toast.LENGTH_LONG).show()
+
+
 
                }
            }

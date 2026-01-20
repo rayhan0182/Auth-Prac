@@ -12,7 +12,7 @@ sealed class DataState<T>(
 
     class Success<T>(type:T): DataState<T>(utype = type)
 
-    class Failure<T>(errormas: String): DataState<T>(massage = errormas)
+    class Massage<T>(errormas: String): DataState<T>(massage = errormas)
 
 
 }

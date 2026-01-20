@@ -1,5 +1,4 @@
 package com.example.authpractice.bfragment
-
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import dagger.hilt.android.AndroidEntryPoint
-
-
 abstract class BaseFragment<VB: ViewBinding>(
 
     private val layoutinflate:(inflate: LayoutInflater)->VB

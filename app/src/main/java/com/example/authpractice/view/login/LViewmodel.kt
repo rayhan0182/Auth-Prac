@@ -4,21 +4,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.authpractice.core.DataState
 import com.example.authpractice.service.AuthRepo
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 
+import javax.inject.Inject
 
-class LViewmodel: ViewModel() {
+
+@HiltViewModel
+class LViewmodel @Inject constructor(private val repo: AuthRepo): ViewModel() {
 
     private val _loginmutablelivedata = MutableLiveData<DataState<Lmodel>>()
 
     val loginmutablelivedata: LiveData<DataState<Lmodel>> = _loginmutablelivedata
 
+
+
     fun logincreate(lmodel: Lmodel){
 
         _loginmutablelivedata.postValue(DataState.Loading())
-        
-        val repo = AuthRepo()
+
 
         repo.login(lmodel).addOnSuccessListener {
 
@@ -26,7 +29,7 @@ class LViewmodel: ViewModel() {
 
         }.addOnFailureListener { exception ->
 
-            _loginmutablelivedata.postValue(DataState.Failure(exception.message.toString()))
+            _loginmutablelivedata.postValue(DataState.Massage(exception.message.toString()))
 
         }
 

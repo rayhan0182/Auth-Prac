@@ -1,30 +1,40 @@
 package com.example.authpractice.service
-
+import com.example.authpractice.Nodesvalue
 import com.example.authpractice.view.login.Lmodel
 import com.example.authpractice.view.register.Rmodel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import dagger.hilt.android.AndroidEntryPoint
+import com.google.firebase.firestore.FirebaseFirestore
+import javax.inject.Inject
+
+class AuthRepo @Inject constructor(private val auth: FirebaseAuth,
+
+    private val firestore: FirebaseFirestore
+
+    ): Authservice {
 
 
-class AuthRepo: Authservice {
-
-    val authins  = FirebaseAuth.getInstance()
 
     override fun register(rmodel: Rmodel): Task<AuthResult> {
 
 
-
-       return authins.createUserWithEmailAndPassword(rmodel.email,rmodel.password)
+        return auth.createUserWithEmailAndPassword(rmodel.email, rmodel.password)
 
     }
 
     override fun login(lmodel: Lmodel): Task<AuthResult> {
 
-      return  authins.signInWithEmailAndPassword(lmodel.email,lmodel.password)
+        return auth.signInWithEmailAndPassword(lmodel.email, lmodel.password)
+
+    }
+
+    override fun usercreate(rmodel: Rmodel): Task<Void> {
+
+      return  firestore.collection(Nodesvalue.User).document(rmodel.userid).set(rmodel)
+
+    }
 
     }
 
 
-}
